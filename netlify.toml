@@ -12,6 +12,9 @@
     command = "pnpm build"
     edge_functions = "netlify/edge-functions"
 
+[build.environment]
+  NPM_CONFIG_USERCONFIG = "./netlify/.npmrc"
+
 [dev]
     port = 8888 # The port that the netlify dev will be accessible on
     publish = "dist"
