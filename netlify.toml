@@ -3,14 +3,6 @@
 #    to = "/handler"
 #    status = 404
 
-[[edge_functions]]
-    path = "/"
-    function = "page"
-
-[[edge_functions]]
-    path = "/health"
-    function = "health"
-
 [build]
     publish = "dist"
     command = "pnpm build"
@@ -23,6 +15,14 @@
     port = 8888 # The port that the netlify dev will be accessible on
     publish = "dist"
     framework = "#static"
-    # command = "pnpm build:deno --watch" # Command to start your dev server
+    command = "pnpm build:server --watch" # Command to start your dev server
     # targetPort = 3000 # The port for your application server, framework or site generator
     autoLaunch = false
+
+[[edge_functions]]
+    path = "/health"
+    function = "health"
+
+[[edge_functions]]
+    path = "/*"
+    function = "page"

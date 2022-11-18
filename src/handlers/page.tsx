@@ -39,6 +39,8 @@ const props: DesignSystemServerProps = {
 };
 
 export default async function page(req: Request, context: Context) {
+  if (["js", "css", "woff"].some((ext) => req.url.includes(`.${ext}`))) return;
+
   const stream = await renderToReadableStream(<Document manifest={manifest} props={props} />);
 
   return new Response(stream, {
