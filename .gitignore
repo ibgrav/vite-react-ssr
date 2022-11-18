@@ -4,8 +4,7 @@ node_modules/
 dist/
 
 .netlify/
-netlify/
-!netlify/.npmrc
+netlify/dist/
 
 *.env*
 *.log*
