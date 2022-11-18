@@ -4,6 +4,10 @@
 #    status = 404
 
 [[edge_functions]]
+    path = "/"
+    function = "page"
+
+[[edge_functions]]
     path = "/health"
     function = "health"
 
