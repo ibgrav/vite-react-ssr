@@ -24,7 +24,7 @@ const server = defineConfig({
   },
   build: {
     ssr: true,
-    outDir: "netlify",
+    outDir: "netlify/dist",
     rollupOptions: {
       input: handlers,
       output: {

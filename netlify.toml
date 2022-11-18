@@ -10,7 +10,7 @@
 [build]
     publish = "dist"
     command = "pnpm build"
-    edge_functions = "netlify/edge-functions"
+    edge_functions = "netlify/dist/edge-functions"
 
 [build.environment]
   NPM_CONFIG_USERCONFIG = "./netlify/.npmrc"
