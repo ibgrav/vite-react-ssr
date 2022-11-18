@@ -1,0 +1,9 @@
+.DS_Store
+
+node_modules/
+.netlify/
+dist/
+netlify/edge-functions/handler.js
+
+*.env*
+*.log*

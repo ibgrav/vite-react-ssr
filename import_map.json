@@ -1,0 +1,10 @@
+{
+  "imports": {
+    "netlify:edge": "https://edge.netlify.com/",
+    "react": "https://esm.sh/react@18.2.0",
+    "react/jsx-runtime": "https://esm.sh/react@18.2.0/jsx-runtime",
+    "react-dom": "https://esm.sh/react-dom@18.2.0",
+    "react-dom/server": "https://esm.sh/react-dom@18.2.0/server",
+    "@harvard-hbs/webdev-design-system/": "./node_modules/@harvard-hbs/webdev-design-system/"
+  }
+}
