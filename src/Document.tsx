@@ -8,7 +8,7 @@ interface DocumentProps {
 }
 
 export function Document({ manifest, props }: DocumentProps) {
-  const entry = "src/render.client.tsx";
+  const entry = "src/render.client.ts";
   const script = manifest?.[entry]?.file || entry;
   const styles = manifest?.[entry]?.css?.[0];
   const assets = manifest?.[entry]?.assets;
@@ -23,6 +23,7 @@ export function Document({ manifest, props }: DocumentProps) {
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Hello 1</title>
+
         {styles && (
           <>
             <link rel="preload" href={`/${styles}`} as="style" crossOrigin="anonymous" />

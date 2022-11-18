@@ -10,13 +10,14 @@ export default defineConfig({
     target: "webworker",
   },
   build: {
+    modulePreload: false,
     ssr: SSR,
     manifest: !SSR,
     outDir: SSR ? "netlify/edge-functions" : "dist",
     rollupOptions: {
-      input: SSR ? "src/handler.tsx" : "src/render.client.tsx",
+      input: SSR ? "src/handler.tsx" : "src/render.client.ts",
       output: {
-        inlineDynamicImports: true,
+        inlineDynamicImports: SSR,
       },
     },
   },
