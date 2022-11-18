@@ -4,8 +4,8 @@
 #    status = 404
 
 [[edge_functions]]
-    path = "/"
-    function = "handler"
+    path = "/health"
+    function = "health"
 
 [build]
     publish = "dist"

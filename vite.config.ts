@@ -1,24 +1,38 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import glob from "fast-glob";
 
-const SSR = Boolean(process.env.SSR);
+const handlers = await glob("./src/handlers/**/*.(ts|tsx)");
 
-export default defineConfig({
+console.log(handlers);
+
+const client = defineConfig({
+  plugins: [react()],
+  build: {
+    manifest: true,
+    rollupOptions: {
+      input: "src/render.client.ts",
+    },
+  },
+});
+
+const server = defineConfig({
   plugins: [react()],
   ssr: {
     noExternal: true,
     target: "webworker",
   },
   build: {
-    modulePreload: false,
-    ssr: SSR,
-    manifest: !SSR,
-    outDir: SSR ? "netlify/edge-functions" : "dist",
+    ssr: true,
+    outDir: "netlify",
     rollupOptions: {
-      input: SSR ? "src/handler.tsx" : "src/render.client.ts",
+      input: handlers,
       output: {
-        inlineDynamicImports: SSR,
+        entryFileNames: "edge-functions/[name].js",
+        chunkFileNames: "assets/[name].js",
       },
     },
   },
 });
+
+export default Boolean(process.env.SSR) ? server : client;

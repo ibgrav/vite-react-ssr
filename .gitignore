@@ -4,7 +4,8 @@ node_modules/
 dist/
 
 .netlify/
-netlify/edge-functions/handler.js
+netlify/
+!netlify/.npmrc
 
 *.env*
 *.log*
