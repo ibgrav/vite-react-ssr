@@ -1,10 +1,8 @@
 {
+  "deno.enable": false,
+
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "prettier.tabWidth": 2,
-  "prettier.printWidth": 120,
-
-  "deno.enable": false
-  // "deno.enablePaths": ["netlify/edge-functions"],
-  // "deno.importMap": "netlify/edge-functions/import_map.json"
+  "prettier.printWidth": 120
 }

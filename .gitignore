@@ -4,7 +4,7 @@ node_modules/
 dist/
 
 .netlify/
-netlify/dist/
+netlify/edge-functions/page.js
 
 *.env*
 *.log*

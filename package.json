@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "node bin/dev.mjs",
+    "netlify": "pnpm build && netlify dev",
     "prod": "node bin/prod.mjs",
     "build:watch": "pnpm build:server --watch",
     "build": "pnpm build:client && pnpm build:server",

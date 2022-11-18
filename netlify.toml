@@ -1,28 +1,31 @@
-#[[redirects]]
-#    from = "/"
-#    to = "/handler"
-#    status = 404
-
 [build]
-    publish = "dist"
-    command = "pnpm build"
-    edge_functions = "netlify/dist/edge-functions"
+publish = "dist"
+command = "pnpm build"
+# edge_functions = "./dist/server/edge-functions"
 
-[build.environment]
-  NPM_CONFIG_USERCONFIG = "./netlify/.npmrc"
+# [build.environment]
+# NPM_CONFIG_USERCONFIG = "netlify/.npmrc"
+
+
+[[edge_functions]]
+path = "/health"
+function = "health"
+
+# [[edge_functions]]
+# path = "/*"
+# function = "page"
 
 [dev]
-    port = 8888 # The port that the netlify dev will be accessible on
-    publish = "dist"
-    framework = "#static"
-    command = "pnpm build:server --watch" # Command to start your dev server
-    # targetPort = 3000 # The port for your application server, framework or site generator
-    autoLaunch = false
+port = 8888
+publish = "dist"
+framework = "#static"
+# command = "pnpm build:server --watch" # Command to start your dev server
+# targetPort = 3000 # The port for your application server, framework or site generator
+autoLaunch = false
 
-[[edge_functions]]
-    path = "/health"
-    function = "health"
 
-[[edge_functions]]
-    path = "/*"
-    function = "page"
+
+# [[redirects]]
+# from = "/*"
+# to = "/.netlify/edge-functions/handler"
+# status = 200

@@ -28,8 +28,8 @@ export function Document({ manifest, props }: DocumentProps) {
           <>
             <link rel="preload" href={`/${styles}`} as="style" crossOrigin="anonymous" />
 
-            {fonts?.map((font) => (
-              <link rel="preload" href={`/${font}`} as="font" type="font/woff" crossOrigin="anonymous" />
+            {fonts?.map((font, i) => (
+              <link key={i} rel="preload" href={`/${font}`} as="font" type="font/woff" crossOrigin="anonymous" />
             ))}
 
             <link rel="stylesheet" href={`/${styles}`} crossOrigin="anonymous" />
@@ -39,6 +39,7 @@ export function Document({ manifest, props }: DocumentProps) {
       <body>
         <div id="root">
           <Render {...props} />
+          {/* <h1>ok</h1> */}
         </div>
 
         <script dangerouslySetInnerHTML={{ __html: `window.DS_PROPS=${JSON.stringify(props)};` }}></script>
