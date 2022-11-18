@@ -5,17 +5,19 @@ const SSR = Boolean(process.env.SSR);
 
 export default defineConfig({
   plugins: [react()],
-  // ssr: {
-  //   noExternal: true,
-  //   target: "webworker",
-  // },
+  ssr: {
+    noExternal: true,
+    target: "webworker",
+  },
   build: {
-    // ssr: SSR,
+    ssr: SSR,
     manifest: !SSR,
-    outDir: SSR ? "netlify/dist" : "dist",
+    outDir: SSR ? "netlify/edge-functions" : "dist",
     rollupOptions: {
-      input: SSR ? "src/Render.tsx" : "src/render.client.tsx",
-      external: SSR ? ["react", "react/jsx-runtime"] : [],
+      input: SSR ? "src/handler.tsx" : "src/render.client.tsx",
+      output: {
+        inlineDynamicImports: true,
+      },
     },
   },
 });

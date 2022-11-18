@@ -1,5 +1,5 @@
 {
-  "include": ["vite.config.ts", "src/client/**/*"],
+  "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"],
   "compilerOptions": {
     "lib": ["dom", "dom.iterable", "esnext"],

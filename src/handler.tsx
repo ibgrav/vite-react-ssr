@@ -1,15 +1,11 @@
-import React from "react";
-import { Context } from "netlify:edge";
+import type { DesignSystemServerProps } from "@harvard-hbs/webdev-design-system/dist/components/system/design-system/use-design-system-context.js";
+import { Context } from "@netlify/edge-functions";
 import { renderToReadableStream } from "react-dom/server";
-import { Render } from "./Render.tsx";
 
-import manifest from "../../dist/manifest.json" assert { type: "json" };
+import { Document } from "./Document.js";
+import manifest from "../dist/manifest.json";
 
-const entry = "src/render.client.tsx";
-const script = manifest?.[entry]?.file || entry;
-const styles = manifest?.[entry]?.css?.[0];
-
-const props: Record<string, unknown> = {
+const props: DesignSystemServerProps = {
   site: { title: "Next.js Site! Change 2" },
   page: {
     components: [
@@ -43,22 +39,7 @@ const props: Record<string, unknown> = {
 };
 
 export default async function handler(req: Request, context: Context) {
-  const stream = await renderToReadableStream(
-    <html lang="en">
-      <head>
-        <title>Hello 1</title>
-        {styles && <link rel="stylesheet" href={`/${styles}`} />}
-      </head>
-      <body>
-        <div id="root">
-          <Render {...props} />
-        </div>
-
-        <script dangerouslySetInnerHTML={{ __html: `window.DS_PROPS=${JSON.stringify(props)};` }}></script>
-        <script type="module" src={`/${script}`}></script>
-      </body>
-    </html>
-  );
+  const stream = await renderToReadableStream(<Document manifest={manifest} props={props} />);
 
   return new Response(stream, {
     status: 200,
